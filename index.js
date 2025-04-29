@@ -1,13 +1,16 @@
 import express from "express"
 import bcrypt from "bcrypt"
 import {connect,User} from "./database.js"
+import dotenv from "dotenv"
+dotenv.config()
+
 const app=express()
 app.use(express.json())
 const start=async ()=>{
     try{
         await connect()
-        app.listen(3000,()=>{
-        console.log("listening on 3000")
+        app.listen(process.env.port,()=>{
+        console.log("listening on",process.env.port)
         })
     }catch(err){
         console.error(err)
